@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sample_Filtering_Sorting_Pagination.Filters;
 using Sample_Filtering_Sorting_Pagination.Models;
 using Sample_Filtering_Sorting_Pagination.Services;
 
@@ -17,9 +18,9 @@ namespace Sample_Filtering_Sorting_Pagination.Controllers
         }
 
         [HttpGet("GetProductsByFilter")]
-        public async Task<List<Product>> GetProductsByFilter()
+        public async Task<List<Product>> GetProductsByFilter([FromQuery] ProductFilter filter)
         {
-            return await productService.GetProductsByFilterAsync();
+            return await productService.GetProductsByFilterAsync(filter);
         }
     }
 }
